@@ -1,11 +1,29 @@
 ## Trade Signal Catcher API
----
 Trade Signal Catcher (SigCat) is a digital asset trading platform using the Ripple Network. Clients connect to SigCat and submit Trade signals. The performance of all signals are tracked against market prices from the Ripple Network.
 
 ### Quick Start
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
+#### Get a UUID (any UUID will do)
+```terminal
+curl -X GET http://sigcatv1-datp.rhcloud.com/uuid
+```
 
+#### Use your UUID and register it with an email address
+```terminal
+curl -X POST  -H "Accept: Application/json" -H "Content-Type: application/json" http://sigcatv1-datp.rhcloud.com/signaller -d '{"key": "8cb84c83-8327-42ca-a907-65e11b7e2dce", "email": "emma@pinkgrass.org"}'
+```
 
+#### Submit your first trade signal with your UUID
+```terminal
+curl -X POST  -H "Accept: Application/json" -H "Content-Type: application/json" http://sigcatv1-datp.rhcloud.com/signal -d '{"type": "buy", "counter": "BTC+rMwjYedjc7qqtKYVLiAccJSmCwih4LnE2q", "key": "3f96ac98-a77d-4c11-896c-811e5d5478d1", "base": "USD+rMwjYedjc7qqtKYVLiAccJSmCwih4LnE2q"}'
+```
+
+### Ripple Concepts
+| field | type | description |
+|---|---|---|
+| currency	| String(ISO4217 currency code)	| Three digit currency code eg. USD |
+| counterparty | String (Address) | A Ripple address eg. rMwjYedjc7qqtKYVLiAccJSmCwih4LnE2q |
+
+rMwjYedjc7qqtKYVLiAccJSmCwih4LnE2q is SnapSwap Ripple address. 
 
 ### API Resources
 Nothing pretty about this API. Expect major changes in V2.
@@ -27,7 +45,7 @@ Register a client with a UUID and email address
 
 | Field        | Type           | Description  |
 | ------------- |-------------| -----|
-| key      | string | Client's UUID |
+| key      | string(UUID) | Client's UUID |
 | email      | string | email address to register UUID to       |
 
 Example Body:
@@ -36,6 +54,11 @@ Example Body:
     'key': 'f327dfff-0d75-4792-b352-1e9fe9cead0a',
     'email': 'emma@pinkgrass.org'
     }
+
+| Field        | Type           | Description  |
+| ------------- |-------------| -----|
+| success      | boolean | True if successfully registered |
+| errors      | array | array of error messages       |
 
 Example response:
 
@@ -67,6 +90,11 @@ example body:
     'type': 'buy',
     'base': 'USD+rMwjYedjc7qqtKYVLiAccJSmCwih4LnE2q', 
     'counter': 'BTC+rMwjYedjc7qqtKYVLiAccJSmCwih4LnE2q'}`
+
+| Field        | Type           | Description  |
+| ------------- |-------------| -----|
+| success      | boolean | True if successfully submitted |
+| errors      | array | array of error messages       |
 
 example response: 
 
