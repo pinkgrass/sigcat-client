@@ -20,7 +20,7 @@ curl -X POST  -H "Accept: Application/json" -H "Content-Type: application/json" 
 ### Ripple Concepts
 | field | type | description |
 |---|---|---|
-| currency	| String(ISO4217 currency code)	| Three digit currency code eg. USD |
+| currency	| String(ISO4217 currency code)	| Three character currency code eg. USD |
 | counterparty | String (Address) | A Ripple address eg. rMwjYedjc7qqtKYVLiAccJSmCwih4LnE2q |
 
 rMwjYedjc7qqtKYVLiAccJSmCwih4LnE2q is SnapSwap Ripple address. 
